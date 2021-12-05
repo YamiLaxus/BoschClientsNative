@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    android:id="@+id/containerMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blanco"
+    android:clickable="true"
+    android:focusable="true">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/image_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:gravity="center"
+                    android:scaleType="fitCenter"
+                    tools:src="@drawable/image_5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </FrameLayout>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="310dp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/common_padding_min"
+                android:background="@color/azul"
+                android:orientation="horizontal"/>
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_padding_min"
+                android:layout_marginStart="@dimen/common_padding_min"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+                app:layout_constraintBottom_toTopOf="@+id/tvDescriptionTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Samsung A12" />
+
+            <TextView
+                android:id="@+id/tvTotalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/common_padding_min"
+                android:gravity="center"
+                android:textSize="19dp"
+                android:textStyle="bold"
+                android:textColor="@color/rojo"
+                app:drawableTint="@color/rojo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvName"
+                tools:text="Q.1,650"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/tvDescriptionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/common_padding_min"
+                android:text="Descripción"
+                android:textColor="@color/black"
+                android:textSize="19sp"
+                android:textStyle="italic|bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTotalPrice" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescriptionTitle">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    android:textColor="@color/black"
+                    tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam," />
+            </androidx.core.widget.NestedScrollView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="@dimen/common_padding_min"
+                android:layout_marginEnd="@dimen/common_padding_min">
+
+                <TextView
+                    android:id="@+id/tvToolsApplication"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/aplicacion"
+                    android:textSize="14dp"
+                    android:textStyle="bold|italic"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tvApplication"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/aplicacion"
+                    android:textSize="14dp"
+                    android:textStyle="italic"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toEndOf="@id/tvToolsApplication"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tvToolsPotencia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+                    android:textStyle="bold|italic"
+                    android:textColor="@color/black"
+                    android:text="Potencia:"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvApplication"/>
+
+                <TextView
+                    android:id="@+id/tvPotencia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:textSize="14dp"
+                    android:textStyle="italic"
+                    android:textColor="@color/black"
+                    tools:text="Potencia"
+                    app:layout_constraintStart_toEndOf="@id/tvToolsPotencia"
+                    app:layout_constraintTop_toBottomOf="@id/tvToolsApplication"/>
+
+                <TextView
+                    android:id="@+id/tvToolsPrecioMayorista"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+                    android:textStyle="bold|italic"
+                    android:textColor="@color/black"
+                    android:text="Precio Mayorista: "
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvPotencia"/>
+
+                <TextView
+                    android:id="@+id/tvPrecioMayorista"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:textSize="14dp"
+                    android:textStyle="bold|italic"
+                    android:textColor="@color/rojo"
+                    tools:text="Q.1350"
+                    app:layout_constraintStart_toEndOf="@id/tvToolsPrecioMayorista"
+                    app:layout_constraintTop_toBottomOf="@id/tvPotencia"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:text="Cantidad:"
+                    android:textSize="18dp"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/tilNewQuantity"
+                    tools:ignore="MissingConstraints" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilNewQuantity"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/common_padding_min"
+                    app:counterOverflowTextColor="@color/black"
+                    app:counterTextColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:ignore="MissingConstraints">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etNewQuantity"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:ems="3"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:shadowColor="@color/black"
+                        tools:text="5"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/common_padding_min"
+                android:background="@color/black"
+                android:orientation="horizontal"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/common_padding_min"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/common_padding_min"
+                    android:gravity="center"
+                    android:textSize="24dp"
+                    android:text="Selecciona tu proveedor"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnLuisVivas"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/common_padding_min"
+                    android:text="Luis Vivas"
+                    android:textColor="@color/blanco"
+                    android:background="@drawable/botones_redondos"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnAroldoGomez"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/common_padding_min"
+                    android:text="Aroldo Gómez"
+                    android:textColor="@color/blanco"
+                    android:background="@drawable/botones_redondos"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnYonnyMirando"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/common_padding_min"
+                    android:text="Yonny Mirando"
+                    android:textColor="@color/blanco"
+                    android:background="@drawable/botones_redondos"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnFranciscoRamirez"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/common_padding_min"
+                    android:text="Francisco Ramírez"
+                    android:textColor="@color/blanco"
+                    android:background="@drawable/botones_redondos"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnMynorMateo"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/common_padding_min"
+                    android:text="Mynor Mateo"
+                    android:textColor="@color/blanco"
+                    android:background="@drawable/botones_redondos"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnAlexDias"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/common_padding_min"
+                    android:text="Alex Díaz"
+                    android:textColor="@color/blanco"
+                    android:background="@drawable/botones_redondos"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">BOSCH</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="aplicacion">Aplicación:</string>
+    <string name="product_msg_loading">Cargando datos</string>
+</resources>
