@@ -4,6 +4,8 @@
     android:id="@+id/containerMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:actionBarNavMode="standard"
+    android:layout_gravity="center"
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.SearchView
@@ -13,13 +15,26 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="@dimen/common_padding_min"
         android:layout_marginStart="@dimen/common_padding_min"
-        android:layout_marginEnd="@dimen/common_padding_min"
+        android:layout_marginEnd="50dp"
         android:background="@drawable/searchview_background"
         app:queryBackground="@color/fui_transparent"
         app:queryHint="Buscar"
         app:iconifiedByDefault="false"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/imbReload"
+        style="?attr/clickAction"
+        android:layout_width="48dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/reload"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toEndOf="@id/searchView"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
     <ScrollView
@@ -61,6 +76,9 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/common_padding_default"
+                android:layout_marginEnd="@dimen/common_padding_default"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/common_padding_min"
                 android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/divider1"

@@ -6,7 +6,7 @@
     android:id="@+id/containerMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blanco"
+    android:background="#FFFFFF"
     android:clickable="true"
     android:focusable="true">
 
@@ -32,9 +32,9 @@
                 <ImageView
                     android:id="@+id/image_product"
                     android:layout_width="match_parent"
-                    android:layout_height="260dp"
+                    android:layout_height="250dp"
                     android:gravity="center"
-                    android:scaleType="fitCenter"
+                    android:scaleType="fitXY"
                     tools:src="@drawable/image_5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="@dimen/common_padding_min"
+                android:layout_marginTop="1dp"
                 android:background="@color/azul"
                 android:orientation="horizontal"/>
 
@@ -73,20 +73,35 @@
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="Samsung A12" />
 
-            <TextView
-                android:id="@+id/tvTotalPrice"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/common_padding_min"
-                android:gravity="center"
-                android:textSize="19dp"
-                android:textStyle="bold"
-                android:textColor="@color/rojo"
-                app:drawableTint="@color/rojo"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvName"
-                tools:text="Q.1,650"
-                tools:ignore="MissingConstraints" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvTotalPriceQ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/common_padding_min"
+                    android:text="Q."
+                    android:textSize="19dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/rojo"
+                    app:drawableTint="@color/rojo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvName"/>
+
+                <TextView
+                    android:id="@+id/tvTotalPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="19dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/rojo"
+                    app:drawableTint="@color/rojo"
+                    tools:text="1,650"/>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvDescriptionTitle"
@@ -179,7 +194,7 @@
                     android:textSize="14dp"
                     android:textStyle="bold|italic"
                     android:textColor="@color/black"
-                    android:text="Precio Mayorista: "
+                    android:text="Precio Mayorista: Q."
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvPotencia"/>
 
@@ -187,11 +202,10 @@
                     android:id="@+id/tvPrecioMayorista"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
                     android:textSize="14dp"
                     android:textStyle="bold|italic"
                     android:textColor="@color/rojo"
-                    tools:text="Q.1350"
+                    tools:text="1350"
                     app:layout_constraintStart_toEndOf="@id/tvToolsPrecioMayorista"
                     app:layout_constraintTop_toBottomOf="@id/tvPotencia"/>
 
@@ -201,6 +215,7 @@
                     android:layout_marginEnd="20dp"
                     android:text="Cantidad:"
                     android:textSize="18dp"
+                    android:textColor="@color/black"
                     android:textStyle="bold|italic"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/tilNewQuantity"
@@ -228,6 +243,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:shadowColor="@color/black"
+                        android:background="@drawable/searchview_background"
                         tools:text="5"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -238,7 +254,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/common_padding_min"
-                android:background="@color/black"
+                android:background="#a73db5"
                 android:orientation="horizontal"/>
 
             <LinearLayout
@@ -252,8 +268,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/common_padding_min"
-                    android:gravity="center"
                     android:textSize="24dp"
+                    android:text="Ordena con un click"
+                    android:textColor="@color/azul"
+                    android:textStyle="bold|italic"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@drawable/circular_border"
                     android:text="Selecciona tu proveedor"/>
 
                 <androidx.appcompat.widget.AppCompatButton

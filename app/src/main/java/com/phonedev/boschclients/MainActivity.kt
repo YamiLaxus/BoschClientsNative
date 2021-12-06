@@ -1,6 +1,7 @@
 package com.phonedev.boschclients
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -10,6 +11,8 @@ import android.widget.Adapter
 import androidx.appcompat.widget.SearchView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.GridLayoutManager
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
@@ -30,8 +33,12 @@ import com.phonedev.boschclients.products.onProductListenner
 import com.phonedev.pocketadmin.entities.Constants
 import java.util.*
 import kotlin.collections.ArrayList
+import androidx.recyclerview.widget.DefaultItemAnimator
 
-class MainActivity : AppCompatActivity(), onProductListenner, MainAux {
+
+
+
+class MainActivity : AppCompatActivity(), onProductListenner, MainAux, SearchView.OnQueryTextListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: ProductAdapter
@@ -78,11 +85,20 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        search()
+        getSupportActionBar()?.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
+        supportActionBar?.setCustomView(R.layout.tool_bar_custom)
+
+        binding.searchView.setOnQueryTextListener(this)
+
+        binding.imbReload.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
         configAuth()
         configFirestoreRealTime()
         configStackImages()
-
+        configRecyclerView()
 
     }
 
@@ -136,10 +152,6 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux {
     }
 
 
-    private fun search() {
-
-    }
-
     private fun configAuth() {
         firebaseAuth = FirebaseAuth.getInstance()
         authStateListener = FirebaseAuth.AuthStateListener { auth ->
@@ -178,7 +190,9 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux {
     }
 
     private fun configRecyclerView() {
-        adapter = ProductAdapter(mutableListOf(), this)
+        adapter = ProductAdapter(ArrayList(), this)
+//        binding.recyclerView.setHasFixedSize(true)
+        binding.recyclerView.setItemAnimator(DefaultItemAnimator())
         binding.recyclerView.apply {
             layoutManager = GridLayoutManager(
                 this@MainActivity, 2,
@@ -219,7 +233,6 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux {
     }
 
     private fun configFirestoreRealTime() {
-        binding.searchView?.let {
             val db = FirebaseFirestore.getInstance()
             val productRef = db.collection(Constants.COLL_PRODUCTS)
 
@@ -239,8 +252,6 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux {
                     }
                 }
             }
-        }
-
     }
 
     override fun onClick(product: ProductsModel) {
@@ -255,4 +266,19 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux {
     }
 
     override fun getProductSelected(): ProductsModel? = productSelected
+
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        return false
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun onQueryTextChange(newText: String?): Boolean {
+        if (newText != null) {
+            adapter.filtrado(newText)
+        } else {
+           configFirestoreRealTime()
+        }
+        return false
+    }
 }

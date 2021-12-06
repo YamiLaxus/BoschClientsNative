@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.firebase.auth.FirebaseAuth
 import com.phonedev.boschclients.databinding.FragmentDetailsFragmentBinding
+import com.phonedev.boschclients.databinding.ToolBarCustomBinding
 import com.phonedev.boschclients.datamodel.MainAux
 import com.phonedev.boschclients.datamodel.ProductsModel
 
@@ -22,6 +23,8 @@ class details_fragment : Fragment() {
     private var binding: FragmentDetailsFragmentBinding? = null
     private var product: ProductsModel? = null
     var number: String = ""
+
+    var title: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
