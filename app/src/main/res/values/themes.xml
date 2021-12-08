@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.BoschClients" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimary">#0C1233</item>
         <item name="colorPrimaryVariant">@color/azul</item>
         <item name="colorOnPrimary">@color/blanco</item>
         <item name="titleTextColor">@color/azul</item>
@@ -12,11 +12,29 @@
         <item name="colorOnSecondary">@color/black</item>
         <item name="actionOverflowButtonStyle">@style/MyStyle</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">#132b8c</item>
+        <item name="android:statusBarColor" tools:targetApi="l">#0C1233</item>
         <!-- Customize your theme here. -->
     </style>
 
     <style name="MyStyle" parent="android:Widget.ActionButton.Overflow">
         <item name="android:src">@drawable/ice_menu_open</item>
+    </style>
+
+    <style name="SplashScreen" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">
+            @drawable/splash
+        </item>
+    </style>
+
+    <style name="ThemeUICustom" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorAccent">@color/azulFondo</item>
+        <item name="android:colorBackground">@color/grey_font</item>
+
+        <!-- On API 21+ you can use android:statusBarColor -->
+
+        <item name="colorControlNormal">@color/blanco</item>
+        <item name="colorControlActivated">@color/blanco</item>
+        <item name="colorControlHighlight">@color/rojo</item>
+
     </style>
 </resources>

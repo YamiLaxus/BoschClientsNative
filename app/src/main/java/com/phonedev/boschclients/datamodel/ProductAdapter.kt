@@ -42,6 +42,7 @@ class ProductAdapter(
 
         holder.binding.tvName.text = product.name
         holder.binding.tvPrice.text = product.precio.toString()
+        holder.binding.tvDescription.text = product.description
         //holder.binding.tvQuantity.text = product.cantidad.toString()
 
         Glide.with(context)
@@ -69,7 +70,7 @@ class ProductAdapter(
             }
         } else {
             productList.clear()
-
+            productList.addAll(productListOrigina)
         }
         notifyDataSetChanged()
     }

@@ -18,7 +18,7 @@ class AboutActivity : AppCompatActivity() {
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.title = "Acerca de..."
+        supportActionBar?.hide()
 
         clickButton()
     }

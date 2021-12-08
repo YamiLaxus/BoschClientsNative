@@ -2,9 +2,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/containerMain"
+    android:background="#0C1233"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:actionBarNavMode="standard"
+    android:visibility="gone"
+    tools:visibility="visible"
     android:layout_gravity="center"
     tools:context=".MainActivity">
 
@@ -16,7 +19,7 @@
         android:layout_marginBottom="@dimen/common_padding_min"
         android:layout_marginStart="@dimen/common_padding_min"
         android:layout_marginEnd="50dp"
-        android:background="@drawable/searchview_background"
+        android:background="@drawable/circular_border"
         app:queryBackground="@color/fui_transparent"
         app:queryHint="Buscar"
         app:iconifiedByDefault="false"
@@ -39,7 +42,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="59dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -51,6 +54,9 @@
                 android:id="@+id/imageStack"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
+                android:layout_marginStart="@dimen/common_padding_min"
+                android:layout_marginEnd="@dimen/common_padding_min"
+                android:background="@drawable/circular_border"
                 app:iss_auto_cycle="true"
                 app:iss_delay="0"
                 app:iss_placeholder="@drawable/gradiant"
@@ -75,10 +81,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/common_padding_default"
-                android:layout_marginEnd="@dimen/common_padding_default"
-                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/common_padding_min"
+                android:layout_marginEnd="@dimen/common_padding_min"
                 android:layout_marginTop="@dimen/common_padding_min"
                 android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/divider1"

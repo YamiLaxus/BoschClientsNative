@@ -13,10 +13,16 @@
     <color name="blanco">#FFFFFFFF</color>
     <color name="azul">#1173f2</color>
     <color name="rojo">#e52610</color>
+    <color name="azulFondo">#0C1233</color>
 
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="textColor">#060606</color>
     <color name="orange">#FA6B1B</color>
+
+    <color name="material_green_50">#E8F5E9</color>
+    <color name="material_green_500">#4CAF50</color>
+    <color name="material_green_700">#388E3C</color>
+    <color name="material_purple_a700">#AA00FF</color>
 </resources>

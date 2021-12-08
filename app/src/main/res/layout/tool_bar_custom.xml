@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
-    android:background="@color/white">
+    android:background="#0C1233">
 
     <TextView
         android:id="@+id/tvNameApp"
@@ -13,7 +13,7 @@
         android:layout_marginStart="@dimen/common_padding_min"
         android:layout_marginTop="@dimen/common_padding_min"
         android:text="Bosch"
-        android:textColor="@color/azul"
+        android:textColor="@color/blanco"
         android:textSize="30dp"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"

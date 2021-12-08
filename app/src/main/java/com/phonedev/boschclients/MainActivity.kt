@@ -34,9 +34,7 @@ import com.phonedev.pocketadmin.entities.Constants
 import java.util.*
 import kotlin.collections.ArrayList
 import androidx.recyclerview.widget.DefaultItemAnimator
-
-
-
+import com.firebase.ui.auth.AuthMethodPickerLayout
 
 class MainActivity : AppCompatActivity(), onProductListenner, MainAux, SearchView.OnQueryTextListener {
 
@@ -119,20 +117,14 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux, SearchVie
         )
         imageList.add(
             SlideModel(
-                "https://firebasestorage.googleapis.com/v0/b/boschdb-c958e.appspot.com/o/stack_images%2Fimage_3.png?alt=media&token=ce5a5904-4a7d-4c12-9884-fd74aea13a59",
-                ""
-            )
-        )
-        imageList.add(
-            SlideModel(
                 "https://firebasestorage.googleapis.com/v0/b/boschdb-c958e.appspot.com/o/stack_images%2Fimage_4.png?alt=media&token=8cf97574-033b-46a4-bf14-b8a6f22efc25",
-                ""
+                "Potencia"
             )
         )
         imageList.add(
             SlideModel(
                 "https://firebasestorage.googleapis.com/v0/b/boschdb-c958e.appspot.com/o/stack_images%2Fimage_5.png?alt=media&token=1278f6aa-2888-4f2d-b74b-41aef9aa8161",
-                ""
+                "La tecnología que quieres."
             )
         )
         imageList.add(
@@ -143,7 +135,7 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux, SearchVie
         )
         imageList.add(
             SlideModel(
-                "https://firebasestorage.googleapis.com/v0/b/boschdb-c958e.appspot.com/o/stack_images%2Fscreen%20whatsapp.jpg?alt=media&token=e284d5e2-680f-41e3-8b9a-9de27f34d055",
+                "https://firebasestorage.googleapis.com/v0/b/boschdb-c958e.appspot.com/o/stack_images%2Forderfor.png?alt=media&token=78eea3ff-468d-4e69-80ab-07fae34453c6",
                 "Ordena por WhatsApp."
             )
         )
@@ -160,17 +152,26 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux, SearchVie
                 supportActionBar?.show()
                 binding.llProgress.visibility = View.GONE
                 binding.recyclerView.visibility = View.VISIBLE
+                binding.containerMain.visibility = View.VISIBLE
             } else {
                 val providers = arrayListOf(
                     AuthUI.IdpConfig.EmailBuilder().build(),
                     AuthUI.IdpConfig.GoogleBuilder().build()
                 )
 
+                val loginView = AuthMethodPickerLayout
+                    .Builder(R.layout.view_login)
+                    .setEmailButtonId(R.id.btnEmail)
+                    .setGoogleButtonId(R.id.btnGoogle)
+                    .build()
+
                 resultLauncher.launch(
                     AuthUI.getInstance()
                         .createSignInIntentBuilder()
                         .setAvailableProviders(providers)
                         .setIsSmartLockEnabled(false)
+                        .setAuthMethodPickerLayout(loginView)
+                        .setTheme(R.style.ThemeUICustom)
                         .build()
                 )
             }
@@ -191,11 +192,10 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux, SearchVie
 
     private fun configRecyclerView() {
         adapter = ProductAdapter(ArrayList(), this)
-//        binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.setItemAnimator(DefaultItemAnimator())
+//        binding.recyclerView.setItemAnimator(DefaultItemAnimator())
         binding.recyclerView.apply {
             layoutManager = GridLayoutManager(
-                this@MainActivity, 2,
+                this@MainActivity, 1,
                 GridLayoutManager.VERTICAL, false
             )
             adapter = this@MainActivity.adapter
