@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Adapter
 import androidx.appcompat.widget.SearchView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -33,8 +32,8 @@ import com.phonedev.boschclients.products.onProductListenner
 import com.phonedev.pocketadmin.entities.Constants
 import java.util.*
 import kotlin.collections.ArrayList
-import androidx.recyclerview.widget.DefaultItemAnimator
 import com.firebase.ui.auth.AuthMethodPickerLayout
+import com.phonedev.boschclients.cart.CartFragment
 
 class MainActivity : AppCompatActivity(), onProductListenner, MainAux, SearchView.OnQueryTextListener {
 
@@ -97,6 +96,7 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux, SearchVie
         configFirestoreRealTime()
         configStackImages()
         configRecyclerView()
+        configBottomSheets()
 
     }
 
@@ -265,8 +265,24 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux, SearchVie
             .commit()
     }
 
+    fun configBottomSheets(){
+        binding.btnViewCart.setOnClickListener {
+            val fragment = CartFragment()
+            fragment.show(supportFragmentManager.beginTransaction(), CartFragment::class.java.simpleName)
+        }
+    }
+
     override fun getProductSelected(): ProductsModel? = productSelected
 
+    override fun getProductsCart(): MutableList<ProductsModel> {
+        val productCartList = mutableListOf<ProductsModel>()
+        (1..7).forEach {
+            val product =
+                ProductsModel(it.toString(), "Producto $it", "This prod$it", "", "", "", "", it, 2.0 * it, 1.0*it)
+            productCartList.add(product)
+        }
+        return productCartList
+    }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         return false

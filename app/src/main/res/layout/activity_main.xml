@@ -41,11 +41,13 @@
 
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="59dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cnButtom">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -114,5 +116,49 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cnButtom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:foregroundGravity="center"
+        android:layout_marginBottom="@dimen/common_padding_min"
+        android:layout_marginStart="@dimen/common_padding_default"
+        android:layout_marginEnd="@dimen/common_padding_default"
+        android:background="@drawable/circular_border"
+        app:layout_constraintTop_toBottomOf="@id/recyclerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="NotSibling">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvTotal"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:foregroundGravity="center"
+            android:textColor="@color/black"
+            android:text="@string/product_empty_cart"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/common_padding_default"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/cnButtom"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnViewCart"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:shadowColor="@color/white"
+            android:background="@drawable/circular_border_rojo"
+            android:text="Ver Carrito"
+            android:textColor="@color/blanco"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

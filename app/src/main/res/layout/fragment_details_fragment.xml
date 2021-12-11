@@ -2,13 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity"
     android:id="@+id/containerMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0C1233"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    tools:context=".MainActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -35,10 +35,10 @@
                     android:layout_height="250dp"
                     android:gravity="center"
                     android:scaleType="fitXY"
-                    tools:src="@drawable/image_5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/image_5" />
 
             </FrameLayout>
 
@@ -54,27 +54,27 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="1dp"
                 android:background="@color/blanco"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal" />
 
             <TextView
                 android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/common_padding_min"
                 android:layout_marginStart="@dimen/common_padding_min"
+                android:layout_marginTop="@dimen/common_padding_min"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:textColor="@color/blanco"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/frameLayout"
                 app:layout_constraintBottom_toTopOf="@+id/tvDescriptionTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout"
                 tools:text="Samsung A12" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
@@ -84,24 +84,52 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/common_padding_min"
                     android:text="Q."
+                    android:textColor="@color/rojo"
                     android:textSize="19dp"
                     android:textStyle="bold"
-                    android:textColor="@color/rojo"
                     app:drawableTint="@color/rojo"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvName"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tvTotalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/rojo"
                     android:textSize="19dp"
                     android:textStyle="bold"
-                    android:textColor="@color/rojo"
                     app:drawableTint="@color/rojo"
-                    tools:text="1,650"/>
+                    app:layout_constraintStart_toEndOf="@id/tvTotalPriceQ"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="1,650" />
 
-            </LinearLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/common_padding_min"
+                    android:src="@drawable/ic_add_shopping_cart"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btnAddCart"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnAddCart"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/rojo"
+                    android:shadowColor="@color/white"
+                    android:text="Agregar "
+                    android:textAlignment="center"
+                    android:textColor="@color/blanco"
+                    android:textStyle="bold"
+                    app:icon="@drawable/ic_add_shopping_cart"
+                    app:iconGravity="textEnd"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/tvDescriptionTitle"
@@ -137,8 +165,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginStart="@dimen/common_padding_min"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="@dimen/common_padding_min">
 
                 <TextView
@@ -146,11 +174,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/aplicacion"
+                    android:textColor="@color/blanco"
                     android:textSize="14dp"
                     android:textStyle="bold|italic"
-                    android:textColor="@color/blanco"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tvApplication"
@@ -158,67 +186,67 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:text="@string/aplicacion"
+                    android:textColor="@color/blanco"
                     android:textSize="14dp"
                     android:textStyle="italic"
-                    android:textColor="@color/blanco"
                     app:layout_constraintStart_toEndOf="@id/tvToolsApplication"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tvToolsPotencia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Potencia:"
+                    android:textColor="@color/blanco"
                     android:textSize="14dp"
                     android:textStyle="bold|italic"
-                    android:textColor="@color/blanco"
-                    android:text="Potencia:"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvApplication"/>
+                    app:layout_constraintTop_toBottomOf="@id/tvApplication" />
 
                 <TextView
                     android:id="@+id/tvPotencia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:textColor="@color/blanco"
                     android:textSize="14dp"
                     android:textStyle="italic"
-                    android:textColor="@color/blanco"
-                    tools:text="Potencia"
                     app:layout_constraintStart_toEndOf="@id/tvToolsPotencia"
-                    app:layout_constraintTop_toBottomOf="@id/tvToolsApplication"/>
+                    app:layout_constraintTop_toBottomOf="@id/tvToolsApplication"
+                    tools:text="Potencia" />
 
                 <TextView
                     android:id="@+id/tvToolsPrecioMayorista"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Precio Mayorista: Q."
+                    android:textColor="@color/blanco"
                     android:textSize="14dp"
                     android:textStyle="bold|italic"
-                    android:textColor="@color/blanco"
-                    android:text="Precio Mayorista: Q."
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvPotencia"/>
+                    app:layout_constraintTop_toBottomOf="@id/tvPotencia" />
 
                 <TextView
                     android:id="@+id/tvPrecioMayorista"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/rojo"
                     android:textSize="14dp"
                     android:textStyle="bold|italic"
-                    android:textColor="@color/rojo"
-                    tools:text="1350"
                     app:layout_constraintStart_toEndOf="@id/tvToolsPrecioMayorista"
-                    app:layout_constraintTop_toBottomOf="@id/tvPotencia"/>
+                    app:layout_constraintTop_toBottomOf="@id/tvPotencia"
+                    tools:text="1350" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
                     android:text="Cantidad:"
-                    android:textSize="18dp"
                     android:textColor="@color/blanco"
+                    android:textSize="18dp"
                     android:textStyle="bold|italic"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/tilNewQuantity"
+                    app:layout_constraintEnd_toEndOf="parent"
                     tools:ignore="MissingConstraints" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -229,22 +257,22 @@
                     android:layout_marginStart="@dimen/common_padding_min"
                     app:counterOverflowTextColor="@color/black"
                     app:counterTextColor="@color/black"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     tools:ignore="MissingConstraints">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etNewQuantity"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/searchview_background"
                         android:ems="3"
                         android:imeOptions="actionDone"
                         android:inputType="number"
+                        android:shadowColor="@color/blanco"
                         android:textAlignment="center"
                         android:textColor="@color/blanco"
-                        android:shadowColor="@color/blanco"
-                        android:background="@drawable/searchview_background"
-                        tools:text="5"/>
+                        tools:text="5" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -255,85 +283,85 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/common_padding_min"
                 android:background="@color/blanco"
-                android:orientation="horizontal"/>
+                android:orientation="horizontal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/common_padding_min"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/common_padding_min"
-                    android:textSize="24dp"
-                    android:text="Ordena con un click"
+                    android:text="Ordena este artículo con un click"
                     android:textColor="@color/blanco"
-                    android:textStyle="bold|italic"/>
+                    android:textSize="20dp"
+                    android:textStyle="bold|italic" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="18dp"
+                    android:text="Selecciona tu proveedor"
                     android:textColor="@color/blanco"
-                    android:text="Selecciona tu proveedor"/>
+                    android:textSize="12dp" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnLuisVivas"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/common_padding_min"
+                    android:background="@drawable/botones_redondos"
                     android:text="Luis Vivas"
-                    android:textColor="@color/blanco"
-                    android:background="@drawable/botones_redondos"/>
+                    android:textColor="@color/blanco" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnAroldoGomez"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/common_padding_min"
+                    android:background="@drawable/botones_redondos"
                     android:text="Aroldo Gómez"
-                    android:textColor="@color/blanco"
-                    android:background="@drawable/botones_redondos"/>
+                    android:textColor="@color/blanco" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnYonnyMirando"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/common_padding_min"
+                    android:background="@drawable/botones_redondos"
                     android:text="Yonny Mirando"
-                    android:textColor="@color/blanco"
-                    android:background="@drawable/botones_redondos"/>
+                    android:textColor="@color/blanco" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnFranciscoRamirez"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/common_padding_min"
+                    android:background="@drawable/botones_redondos"
                     android:text="Francisco Ramírez"
-                    android:textColor="@color/blanco"
-                    android:background="@drawable/botones_redondos"/>
+                    android:textColor="@color/blanco" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnMynorMateo"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/common_padding_min"
+                    android:background="@drawable/botones_redondos"
                     android:text="Mynor Mateo"
-                    android:textColor="@color/blanco"
-                    android:background="@drawable/botones_redondos"/>
+                    android:textColor="@color/blanco" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnAlexDias"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/common_padding_min"
+                    android:background="@drawable/botones_redondos"
                     android:text="Alex Díaz"
-                    android:textColor="@color/blanco"
-                    android:background="@drawable/botones_redondos"/>
+                    android:textColor="@color/blanco" />
 
             </LinearLayout>
 

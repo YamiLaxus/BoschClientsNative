@@ -4,4 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="aplicacion">Aplicación:</string>
     <string name="product_msg_loading">Cargando datos</string>
+    <string name="cart_title">Carrito</string>
+    <string name="product_empty_cart">Carrito Vacío</string>
 </resources>
