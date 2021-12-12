@@ -17,7 +17,7 @@
             android:orientation="horizontal"
             android:paddingHorizontal="@dimen/common_padding_default"
             android:gravity="center_vertical">
-            
+
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="280dp"
                 app:layout_constraintHeight_default="wrap"
                 tools:itemCount="5"
                 tools:listitem="@layout/item_product_cart"
@@ -58,7 +58,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnLuisVivas"
-                android:layout_width="300dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/common_padding_min"
                 android:text="Luis Vivas"
@@ -66,24 +66,25 @@
                 android:background="@drawable/botones_redondos"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btnAroldoGomez"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnAroldoGomez"
-                android:layout_width="300dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/common_padding_min"
                 android:text="Aroldo Gómez"
                 android:textColor="@color/blanco"
                 android:background="@drawable/botones_redondos"
-                app:layout_constraintTop_toBottomOf="@+id/btnLuisVivas"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btnLuisVivas"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnYonnyMirando"
-                android:layout_width="300dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/common_padding_min"
                 android:text="Yonny Mirando"
@@ -91,23 +92,23 @@
                 android:background="@drawable/botones_redondos"
                 app:layout_constraintTop_toBottomOf="@+id/btnAroldoGomez"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toStartOf="@id/btnFranciscoRamirez"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnFranciscoRamirez"
-                android:layout_width="300dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/common_padding_min"
                 android:text="Francisco Ramírez"
                 android:textColor="@color/blanco"
                 android:background="@drawable/botones_redondos"
-                app:layout_constraintTop_toBottomOf="@+id/btnYonnyMirando"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnAroldoGomez"
+                app:layout_constraintStart_toEndOf="@+id/btnYonnyMirando"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnMynorMateo"
-                android:layout_width="300dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/common_padding_min"
                 android:text="Mynor Mateo"
@@ -115,18 +116,18 @@
                 android:background="@drawable/botones_redondos"
                 app:layout_constraintTop_toBottomOf="@+id/btnFranciscoRamirez"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toStartOf="@+id/btnAlexDias"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnAlexDias"
-                android:layout_width="300dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/common_padding_min"
                 android:text="Alex Díaz"
                 android:textColor="@color/blanco"
                 android:background="@drawable/botones_redondos"
-                app:layout_constraintTop_toBottomOf="@+id/btnMynorMateo"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnFranciscoRamirez"
+                app:layout_constraintStart_toEndOf="@+id/btnMynorMateo"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
             <com.google.android.material.textview.MaterialTextView
