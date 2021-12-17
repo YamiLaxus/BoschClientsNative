@@ -35,7 +35,8 @@ import kotlin.collections.ArrayList
 import com.firebase.ui.auth.AuthMethodPickerLayout
 import com.phonedev.boschclients.cart.CartFragment
 
-class MainActivity : AppCompatActivity(), onProductListenner, MainAux, SearchView.OnQueryTextListener {
+class MainActivity : AppCompatActivity(), onProductListenner, MainAux,
+    SearchView.OnQueryTextListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: ProductAdapter
@@ -46,6 +47,8 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux, SearchVie
     private lateinit var firestoreListenner: ListenerRegistration
 
     private var productSelected: ProductsModel? = null
+
+    val productCartList = mutableListOf<ProductsModel>()
 
 
     private val resultLauncher =
@@ -233,29 +236,35 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux, SearchVie
     }
 
     private fun configFirestoreRealTime() {
-            val db = FirebaseFirestore.getInstance()
-            val productRef = db.collection(Constants.COLL_PRODUCTS)
+        val db = FirebaseFirestore.getInstance()
+        val productRef = db.collection(Constants.COLL_PRODUCTS)
 
-            firestoreListenner = productRef.addSnapshotListener { snapshot, error ->
-                if (error != null) {
-                    Toast.makeText(this, "Error al consultar datos", Toast.LENGTH_SHORT).show()
-                    return@addSnapshotListener
-                }
+        firestoreListenner = productRef.addSnapshotListener { snapshot, error ->
+            if (error != null) {
+                Toast.makeText(this, "Error al consultar datos", Toast.LENGTH_SHORT).show()
+                return@addSnapshotListener
+            }
 
-                for (snapshot in snapshot!!.documentChanges) {
-                    val product = snapshot.document.toObject(ProductsModel::class.java)
-                    product.id = snapshot.document.id
-                    when (snapshot.type) {
-                        DocumentChange.Type.ADDED -> adapter.add(product)
-                        DocumentChange.Type.MODIFIED -> adapter.update(product)
-                        DocumentChange.Type.REMOVED -> adapter.delete(product)
-                    }
+            for (snapshot in snapshot!!.documentChanges) {
+                val product = snapshot.document.toObject(ProductsModel::class.java)
+                product.id = snapshot.document.id
+                when (snapshot.type) {
+                    DocumentChange.Type.ADDED -> adapter.add(product)
+                    DocumentChange.Type.MODIFIED -> adapter.update(product)
+                    DocumentChange.Type.REMOVED -> adapter.delete(product)
                 }
             }
+        }
     }
 
     override fun onClick(product: ProductsModel) {
-        productSelected = product
+        val index = productCartList.indexOf(product)
+
+        if (index != -1) {
+            productSelected = productCartList[index]
+        } else {
+            productSelected = product
+        }
 
         val fragment = details_fragment()
         supportFragmentManager
@@ -265,24 +274,19 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux, SearchVie
             .commit()
     }
 
-    fun configBottomSheets(){
+    fun configBottomSheets() {
         binding.btnViewCart.setOnClickListener {
             val fragment = CartFragment()
-            fragment.show(supportFragmentManager.beginTransaction(), CartFragment::class.java.simpleName)
+            fragment.show(
+                supportFragmentManager.beginTransaction(),
+                CartFragment::class.java.simpleName
+            )
         }
     }
 
     override fun getProductSelected(): ProductsModel? = productSelected
 
-    override fun getProductsCart(): MutableList<ProductsModel> {
-        val productCartList = mutableListOf<ProductsModel>()
-        (1..7).forEach {
-            val product =
-                ProductsModel(it.toString(), "Producto $it", "This prod$it", "", "", "", "", it, 2.0 * it, 1.0*it)
-            productCartList.add(product)
-        }
-        return productCartList
-    }
+    override fun getProductsCart(): MutableList<ProductsModel> = productCartList
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         return false
@@ -293,8 +297,39 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux, SearchVie
         if (newText != null) {
             adapter.filtrado(newText)
         } else {
-           configFirestoreRealTime()
+            configFirestoreRealTime()
         }
         return false
+    }
+
+    override fun addProductToCart(product: ProductsModel) {
+        val index = productCartList.indexOf(product)
+
+        if (index != -1) {
+            productCartList.set(index, product)
+        } else {
+            productCartList.add(product)
+        }
+
+        updateTotal()
+    }
+
+    override fun updateTotal() {
+        var total = 0.0
+        var totalMayor = 0.0
+        productCartList.forEach { product ->
+            total += product.totalPrice()
+            totalMayor += product.totalPriceMayor()
+        }
+
+        if (total == 0.0) {
+            binding.tvTotal.text = getString(R.string.product_empty_cart)
+        } else {
+            binding.tvTotal.text = getString(R.string.product_full_cart, total)
+        }
+    }
+
+    override fun clearCart() {
+        productCartList.clear()
     }
 }

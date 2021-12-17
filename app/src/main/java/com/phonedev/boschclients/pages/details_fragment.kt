@@ -24,7 +24,6 @@ class details_fragment : Fragment() {
     private var product: ProductsModel? = null
     var number: String = ""
 
-    var title: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,6 +40,8 @@ class details_fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding?.etNewQuantity?.setText("1")
 
         getProduct()
         clickToBuy()
@@ -71,6 +72,13 @@ class details_fragment : Fragment() {
     override fun onDestroy() {
         (activity as AppCompatActivity?)!!.supportActionBar!!.title = "Bosch"
         super.onDestroy()
+    }
+
+    private fun addToCart(product: ProductsModel) {
+        (activity as MainAux)?.let {
+            it.addProductToCart(product)
+            activity?.onBackPressed()
+        }
     }
 
     fun sendMessage() {
@@ -109,6 +117,12 @@ class details_fragment : Fragment() {
         val i = Intent(Intent.ACTION_VIEW)
         i.data = Uri.parse(url)
         startActivity(i)
+    }
+
+    private fun setNewQuantity(product: ProductsModel) {
+        binding?.let {
+            it.etNewQuantity.setText(product.nuevaCantidad.toString())
+        }
     }
 
     fun clickToBuy() {
@@ -196,6 +210,21 @@ class details_fragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+            }
+            binding.btnAddCart.setOnClickListener {
+                if (binding.etNewQuantity.text.toString()
+                        .isNotEmpty() && binding.etNewQuantity.text.toString().toInt() != 0
+                ) {
+                    product?.nuevaCantidad = binding.etNewQuantity.text.toString().toInt()
+                    product?.let { it1 -> addToCart(it1) }
+                } else {
+                    Toast.makeText(
+                        (activity as AppCompatActivity?)!!,
+                        "Ingresa la cantidad :)",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
             }
         }
     }

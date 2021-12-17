@@ -1,24 +1,39 @@
 package com.phonedev.boschclients.cart
 
 import android.app.Dialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.auth.FirebaseAuth
+import com.phonedev.boschclients.MainActivity
+import com.phonedev.boschclients.R
 import com.phonedev.boschclients.databinding.FragmentCartBinding
 import com.phonedev.boschclients.datamodel.MainAux
 import com.phonedev.boschclients.datamodel.ProductsModel
 
-class CartFragment : BottomSheetDialogFragment(), OnCartListener {
+class CartFragment :
+    BottomSheetDialogFragment(), OnCartListener {
 
     private var binding: FragmentCartBinding? = null
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<*>
 
     private lateinit var adapter: ProductCartAdapter
+
+    private var totalPrice = 0.0
+    private var totalPriceMayor = 0.0
+
+
+    var number: String = ""
+    var productList: MutableList<ProductsModel>? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = FragmentCartBinding.inflate(LayoutInflater.from(activity))
@@ -39,15 +54,25 @@ class CartFragment : BottomSheetDialogFragment(), OnCartListener {
 
     }
 
-    fun setupBottoms(){
+    fun setupBottoms() {
         binding?.let {
             it.ibClose.setOnClickListener {
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
             }
+            it.btnLuisVivas.setOnClickListener {
+                number = "50256900208"
+                sendMessage()
+                requestOrder()
+            }
         }
     }
 
-    fun setupRecyclerView(){
+    private fun requestOrder() {
+        dismiss()
+        (activity as? MainAux)?.clearCart()
+    }
+
+    fun setupRecyclerView() {
         binding?.let {
             adapter = ProductCartAdapter(mutableListOf(), this)
 
@@ -55,31 +80,68 @@ class CartFragment : BottomSheetDialogFragment(), OnCartListener {
                 layoutManager = LinearLayoutManager(context)
                 adapter = this@CartFragment.adapter
             }
-
-//            (1..5).forEach {
-//                val product =
-//                    ProductsModel(it.toString(), "Producto $it", "This prod$it", "", "", "", "", it, 2.0 * it, 1.0*it)
-//                adapter.add(product)
-//            }
         }
     }
 
     override fun onDestroy() {
+        (activity as? MainAux)?.updateTotal()
         super.onDestroy()
         binding = null
     }
 
-    fun getProducts(){
+    fun getProducts() {
         (activity as? MainAux)?.getProductsCart()?.forEach {
             adapter.add(it)
         }
     }
 
     override fun setQuantity(product: ProductsModel) {
-        TODO("Not yet implemented")
+        adapter.update(product)
     }
 
-    override fun showTotal(total: Double) {
-        TODO("Not yet implemented")
+    override fun showTotal(total: Double, totalMayor: Double) {
+        totalPrice = total
+        totalPriceMayor = totalMayor
+        binding?.let {
+            it.tvTotal.text = getString(R.string.product_full_cart, total)
+            it.tvTotalMayorista.text = getString(R.string.product_full_mayor_cart, totalMayor)
+        }
+    }
+
+    fun sendMessage() {
+        var user = FirebaseAuth.getInstance().currentUser?.displayName.toString()
+
+        var pedido = ""
+        pedido = pedido + "\n"
+        pedido = pedido + "CLIENTE: $user"
+        pedido = pedido + "\n"
+        pedido = pedido + "_______________________________"
+
+        Toast.makeText(
+            (activity as AppCompatActivity?)!!,
+            "Total Items: " + adapter.itemCount,
+            Toast.LENGTH_SHORT
+        ).show()
+
+        val productList = mutableListOf<ProductsModel>()
+
+        for (i in productList) {
+            pedido = pedido +
+                    "\n" +
+                    "Producto: $productList" +
+                    "\n" +
+                    "Cantidad: $productList" +
+                    "\n" +
+                    "_______________________________"
+        }
+
+        pedido = pedido + "Total: Q.$totalPrice" +
+        "\n"
+        pedido = pedido + "Total Mayorista: Q.$totalPriceMayor"
+
+        val url = "https://wa.me/$number?text=$pedido"
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+        startActivity(intent)
     }
 }

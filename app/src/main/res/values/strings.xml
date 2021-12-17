@@ -6,4 +6,6 @@
     <string name="product_msg_loading">Cargando datos</string>
     <string name="cart_title">Carrito</string>
     <string name="product_empty_cart">Carrito Vacío</string>
+    <string name="product_full_cart">Total: Q%1$.2f</string>
+    <string name="product_full_mayor_cart">Mayorista: Q%1$.2f</string>
 </resources>

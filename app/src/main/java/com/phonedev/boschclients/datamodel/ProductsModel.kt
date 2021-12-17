@@ -11,9 +11,13 @@ data class ProductsModel(
     var bateria: String? = null,
     var potencia: String? = null,
     var cantidad: Int = 0,
+    @get:Exclude var nuevaCantidad: Int = 0,
     var precio: Double = 0.0,
     var precioMayor: Double = 0.0
 ) {
+
+    fun totalPrice(): Double = nuevaCantidad * precio
+    fun totalPriceMayor(): Double = nuevaCantidad * precioMayor
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

@@ -4,5 +4,5 @@ import com.phonedev.boschclients.datamodel.ProductsModel
 
 interface OnCartListener {
     fun setQuantity(product: ProductsModel)
-    fun showTotal(total: Double)
+    fun showTotal(total: Double, totalMayor: Double)
 }
