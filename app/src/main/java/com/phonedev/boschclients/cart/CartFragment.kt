@@ -8,12 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.iterator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth
-import com.phonedev.boschclients.MainActivity
 import com.phonedev.boschclients.R
 import com.phonedev.boschclients.databinding.FragmentCartBinding
 import com.phonedev.boschclients.datamodel.MainAux
@@ -30,10 +30,7 @@ class CartFragment :
 
     private var totalPrice = 0.0
     private var totalPriceMayor = 0.0
-
-
     var number: String = ""
-    var productList: MutableList<ProductsModel>? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = FragmentCartBinding.inflate(LayoutInflater.from(activity))
@@ -61,8 +58,17 @@ class CartFragment :
             }
             it.btnLuisVivas.setOnClickListener {
                 number = "50256900208"
-                sendMessage()
-                requestOrder()
+
+                if (totalPrice == 0.0){
+                    Toast.makeText(
+                        (activity as AppCompatActivity?)!!,
+                        "Agrega algo a tu carrito :)",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    sendMessage()
+                    requestOrder()
+                }
             }
         }
     }
@@ -108,36 +114,34 @@ class CartFragment :
         }
     }
 
-    fun sendMessage() {
-        var user = FirebaseAuth.getInstance().currentUser?.displayName.toString()
+    private fun sendMessage() {
+        val user = FirebaseAuth.getInstance().currentUser?.displayName.toString()
 
         var pedido = ""
-        pedido = pedido + "\n"
+        pedido = "\n"
         pedido = pedido + "CLIENTE: $user"
         pedido = pedido + "\n"
         pedido = pedido + "_______________________________"
 
         Toast.makeText(
             (activity as AppCompatActivity?)!!,
-            "Total Items: " + adapter.itemCount,
+            "Total en lista: ${adapter.itemCount}",
             Toast.LENGTH_SHORT
         ).show()
 
-        val productList = mutableListOf<ProductsModel>()
-
-        for (i in productList) {
-            pedido = pedido +
-                    "\n" +
-                    "Producto: $productList" +
-                    "\n" +
-                    "Cantidad: $productList" +
-                    "\n" +
-                    "_______________________________"
-        }
+//        for (i in){
+//            pedido += pedido +
+//                    "\n" +
+//                    "Producto: $rec[i].name" +
+//                    "\n" +
+//                    "Cantidad: $rec[i].nuevaCantidad" +
+//                    "\n" +
+//                    "_______________________________"
+//        }
 
         pedido = pedido + "Total: Q.$totalPrice" +
         "\n"
-        pedido = pedido + "Total Mayorista: Q.$totalPriceMayor"
+        pedido += "Total Mayorista: Q.$totalPriceMayor"
 
         val url = "https://wa.me/$number?text=$pedido"
         val intent = Intent(Intent.ACTION_VIEW)
