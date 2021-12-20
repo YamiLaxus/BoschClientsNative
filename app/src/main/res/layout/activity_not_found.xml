@@ -10,14 +10,14 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <ImageView
@@ -51,15 +51,23 @@
                 android:layout_marginTop="@dimen/common_padding_default"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
-                android:background="@drawable/phonedevbuild"
+                android:background="@drawable/page404"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/phoneDevLogo"/>
 
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Actividad en mantenimiento"
+                android:textSize="16dp"
+                android:textColor="@color/blanco"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/common_padding_min"
                 android:orientation="horizontal"
                 android:gravity="center">
@@ -73,7 +81,9 @@
                     android:background="@drawable/circular_border"
                     android:src="@drawable/whatsapp"
                     android:scaleType="centerInside"
-                    style="?attr/clickAction"/>
+                    style="?attr/clickAction"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
                 <ImageButton
                     android:id="@+id/btnFacebook"
@@ -84,7 +94,9 @@
                     android:background="@drawable/circular_border"
                     android:src="@drawable/facebook"
                     android:scaleType="centerInside"
-                    style="?attr/clickAction"/>
+                    style="?attr/clickAction"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btnWhatsApp"/>
 
                 <ImageButton
                     android:id="@+id/btnInstagram"
@@ -95,7 +107,9 @@
                     android:background="@drawable/circular_border"
                     android:src="@drawable/instagram"
                     android:scaleType="centerInside"
-                    style="?attr/clickAction"/>
+                    style="?attr/clickAction"
+                    app:layout_constraintStart_toEndOf="@id/btnFacebook"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
             </LinearLayout>
 

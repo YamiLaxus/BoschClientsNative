@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.iterator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -30,7 +29,7 @@ class CartFragment :
 
     private var totalPrice = 0.0
     private var totalPriceMayor = 0.0
-    var number: String = ""
+    private var number: String = ""
 
     private val listOnCart: MutableList<ProductsModel> = mutableListOf()
 
@@ -103,7 +102,7 @@ class CartFragment :
             it.btnLuisVivas.setOnClickListener {
                 number = "50256900208"
 
-                if (totalPrice == 0.0) {
+                if (totalPrice == 0.0 && totalPrice <= 0.0) {
                     Toast.makeText(
                         (activity as AppCompatActivity?)!!,
                         getString(R.string.add_somethigs_to_cart),
@@ -117,7 +116,7 @@ class CartFragment :
             it.btnAroldoGomez.setOnClickListener {
                 number = "50256900242"
 
-                if (totalPrice == 0.0) {
+                if (totalPrice == 0.0 && totalPrice <= 0.0) {
                     Toast.makeText(
                         (activity as AppCompatActivity?)!!,
                         getString(R.string.add_somethigs_to_cart),
@@ -131,7 +130,7 @@ class CartFragment :
             it.btnYonnyMirando.setOnClickListener {
                 number = "50242705179"
 
-                if (totalPrice == 0.0) {
+                if (totalPrice == 0.0 && totalPrice <= 0.0) {
                     Toast.makeText(
                         (activity as AppCompatActivity?)!!,
                         getString(R.string.add_somethigs_to_cart),
@@ -145,7 +144,7 @@ class CartFragment :
             it.btnFranciscoRamirez.setOnClickListener {
                 number = "50256900166"
 
-                if (totalPrice == 0.0) {
+                if (totalPrice == 0.0 && totalPrice <= 0.0) {
                     Toast.makeText(
                         (activity as AppCompatActivity?)!!,
                         getString(R.string.add_somethigs_to_cart),
@@ -159,7 +158,7 @@ class CartFragment :
             it.btnMynorMateo.setOnClickListener {
                 number = "50256946716"
 
-                if (totalPrice == 0.0) {
+                if (totalPrice == 0.0 && totalPrice <= 0.0) {
                     Toast.makeText(
                         (activity as AppCompatActivity?)!!,
                         getString(R.string.add_somethigs_to_cart),
@@ -173,7 +172,7 @@ class CartFragment :
             it.btnAlexDias.setOnClickListener {
                 number = "50256900212"
 
-                if (totalPrice == 0.0) {
+                if (totalPrice == 0.0 && totalPrice <= 0.0) {
                     Toast.makeText(
                         (activity as AppCompatActivity?)!!,
                         getString(R.string.add_somethigs_to_cart),
@@ -201,7 +200,7 @@ class CartFragment :
 
         pedido = pedido + "CLIENTE: $user"
         pedido = pedido + "\n"
-        pedido = pedido + "_______________________________"
+        pedido = pedido + "___________________________"
 
         Toast.makeText(
             (activity as AppCompatActivity?)!!,
@@ -220,10 +219,9 @@ class CartFragment :
                     "\n" +
                     "Cantidad: ${listOnCart[index].nuevaCantidad}" +
                     "\n" +
-                    "_______________________________"
+                    "___________________________\n"
             index++
         }
-
         pedido = pedido + "Total: Q.$totalPrice" +
                 "\n" +
                 "Total Mayorista: Q.$totalPriceMayor"

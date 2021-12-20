@@ -36,8 +36,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/common_padding_default"
-                android:layout_marginTop="80dp"
-                android:text="Accesorios que \n Proporcionan \n  Máximo \n   Rendimiento."
+                android:layout_marginTop="100dp"
+                android:text="Accesorios que \nProporcionan \nMáximo \nRendimiento."
                 android:textSize="35dp"
                 android:textColor="@color/blanco"
                 android:textStyle="bold"
@@ -52,14 +52,13 @@
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="@dimen/common_padding_default"
-                android:layout_marginTop="@dimen/common_padding_default"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/gradiant"
                 android:text="Iniciar"
                 android:textColor="@color/blanco"
                 android:pointerIcon="arrow"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvSubTitle"
-                app:layout_constraintBottom_toTopOf="@id/imageScreenShot"/>
+                app:layout_constraintTop_toBottomOf="@id/tvSubTitle" />
 
             <TextView
                 android:id="@+id/tvOrdenarPor"
@@ -76,19 +75,16 @@
             <ImageView
                 android:id="@+id/imageScreenShot"
                 android:layout_width="350dp"
-                android:layout_height="350dp"
-                android:layout_marginTop="@dimen/common_padding_default"
+                android:layout_height="380dp"
+                android:layout_marginTop="35dp"
                 android:src="@drawable/boschssc"
-                app:layout_constraintTop_toBottomOf="@id/tvOrdenarPor"
+                app:layout_constraintTop_toBottomOf="@+id/tvOrdenarPor"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

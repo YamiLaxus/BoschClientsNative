@@ -34,6 +34,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 import com.firebase.ui.auth.AuthMethodPickerLayout
 import com.phonedev.boschclients.cart.CartFragment
+import com.phonedev.boschclients.pages.NotFoundActivity
 
 class MainActivity : AppCompatActivity(), onProductListenner, MainAux,
     SearchView.OnQueryTextListener {
@@ -44,11 +45,11 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux,
     //Frebase
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var authStateListener: FirebaseAuth.AuthStateListener
-    private lateinit var firestoreListenner: ListenerRegistration
+    private lateinit var firestoreListener: ListenerRegistration
 
     private var productSelected: ProductsModel? = null
 
-    val productCartList = mutableListOf<ProductsModel>()
+    private val productCartList = mutableListOf<ProductsModel>()
 
 
     private val resultLauncher =
@@ -190,7 +191,7 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux,
     override fun onPause() {
         super.onPause()
         firebaseAuth.removeAuthStateListener(authStateListener)
-        firestoreListenner.remove()
+        firestoreListener.remove()
     }
 
     private fun configRecyclerView() {
@@ -231,6 +232,10 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux,
                 val intent = Intent(this, AboutActivity::class.java)
                 startActivity(intent)
             }
+            R.id.action_more_info -> {
+                val intent = Intent(this, NotFoundActivity::class.java)
+                startActivity(intent)
+            }
         }
         return true
     }
@@ -239,7 +244,7 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux,
         val db = FirebaseFirestore.getInstance()
         val productRef = db.collection(Constants.COLL_PRODUCTS)
 
-        firestoreListenner = productRef.addSnapshotListener { snapshot, error ->
+        firestoreListener = productRef.addSnapshotListener { snapshot, error ->
             if (error != null) {
                 Toast.makeText(this, "Error al consultar datos", Toast.LENGTH_SHORT).show()
                 return@addSnapshotListener
@@ -274,7 +279,7 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux,
             .commit()
     }
 
-    fun configBottomSheets() {
+    private fun configBottomSheets() {
         binding.btnViewCart.setOnClickListener {
             val fragment = CartFragment()
             fragment.show(

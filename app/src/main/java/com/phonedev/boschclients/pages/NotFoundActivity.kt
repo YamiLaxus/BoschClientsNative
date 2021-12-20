@@ -4,16 +4,16 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.phonedev.boschclients.databinding.ActivityAboutBinding
+import com.phonedev.boschclients.databinding.ActivityNotFoundBinding
 
-class AboutActivity : AppCompatActivity() {
+class NotFoundActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAboutBinding
+    private lateinit var binding: ActivityNotFoundBinding
     private var num = "41642429"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAboutBinding.inflate(layoutInflater)
+        binding = ActivityNotFoundBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         supportActionBar?.hide()

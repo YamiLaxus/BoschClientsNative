@@ -93,7 +93,7 @@ class details_fragment : Fragment() {
         pedido = pedido + "\n"
         pedido = pedido + "CLIENTE: $user"
         pedido = pedido + "\n"
-        pedido = pedido + "_______________________________"
+        pedido = pedido + "___________________________"
 
         binding?.let {
             pedido = pedido +
@@ -106,7 +106,7 @@ class details_fragment : Fragment() {
                     "\n" +
                     "Precio Mayorista: Q. ${product?.precioMayor.toString()}" +
                     "\n" +
-                    "_______________________________" +
+                    "___________________________" +
                     "\n" +
                     "TOTAL: Q. ${total.toString()}" +
                     "\n" +
