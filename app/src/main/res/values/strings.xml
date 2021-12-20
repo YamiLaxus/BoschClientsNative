@@ -8,4 +8,6 @@
     <string name="product_empty_cart">Carrito Vacío</string>
     <string name="product_full_cart">Total: Q%1$.2f</string>
     <string name="product_full_mayor_cart">Mayorista: Q%1$.2f</string>
+    <string name="add_somethigs_to_cart">Agrega algo a tu carrito :)</string>
+    <string name="cart_now_clean">Carrito Limpio</string>
 </resources>

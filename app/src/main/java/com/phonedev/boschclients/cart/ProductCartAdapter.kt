@@ -42,7 +42,6 @@ class ProductCartAdapter(
             .load(product.image)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .centerCrop()
-            .circleCrop()
             .into(holder.binding.imgProduct)
 
     }

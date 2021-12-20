@@ -32,6 +32,8 @@ class CartFragment :
     private var totalPriceMayor = 0.0
     var number: String = ""
 
+    private val listOnCart: MutableList<ProductsModel> = mutableListOf()
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = FragmentCartBinding.inflate(LayoutInflater.from(activity))
         binding?.let {
@@ -51,34 +53,12 @@ class CartFragment :
 
     }
 
-    fun setupBottoms() {
-        binding?.let {
-            it.ibClose.setOnClickListener {
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-            }
-            it.btnLuisVivas.setOnClickListener {
-                number = "50256900208"
-
-                if (totalPrice == 0.0){
-                    Toast.makeText(
-                        (activity as AppCompatActivity?)!!,
-                        "Agrega algo a tu carrito :)",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    sendMessage()
-                    requestOrder()
-                }
-            }
-        }
-    }
-
     private fun requestOrder() {
         dismiss()
         (activity as? MainAux)?.clearCart()
     }
 
-    fun setupRecyclerView() {
+    private fun setupRecyclerView() {
         binding?.let {
             adapter = ProductCartAdapter(mutableListOf(), this)
 
@@ -95,9 +75,10 @@ class CartFragment :
         binding = null
     }
 
-    fun getProducts() {
+    private fun getProducts() {
         (activity as? MainAux)?.getProductsCart()?.forEach {
             adapter.add(it)
+            listOnCart.addAll(listOf(it))
         }
     }
 
@@ -114,11 +95,110 @@ class CartFragment :
         }
     }
 
+    private fun setupBottoms() {
+        binding?.let {
+            it.ibClose.setOnClickListener {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+            }
+            it.btnLuisVivas.setOnClickListener {
+                number = "50256900208"
+
+                if (totalPrice == 0.0) {
+                    Toast.makeText(
+                        (activity as AppCompatActivity?)!!,
+                        getString(R.string.add_somethigs_to_cart),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    sendMessage()
+                    requestOrder()
+                }
+            }
+            it.btnAroldoGomez.setOnClickListener {
+                number = "50256900242"
+
+                if (totalPrice == 0.0) {
+                    Toast.makeText(
+                        (activity as AppCompatActivity?)!!,
+                        getString(R.string.add_somethigs_to_cart),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    sendMessage()
+                    requestOrder()
+                }
+            }
+            it.btnYonnyMirando.setOnClickListener {
+                number = "50242705179"
+
+                if (totalPrice == 0.0) {
+                    Toast.makeText(
+                        (activity as AppCompatActivity?)!!,
+                        getString(R.string.add_somethigs_to_cart),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    sendMessage()
+                    requestOrder()
+                }
+            }
+            it.btnFranciscoRamirez.setOnClickListener {
+                number = "50256900166"
+
+                if (totalPrice == 0.0) {
+                    Toast.makeText(
+                        (activity as AppCompatActivity?)!!,
+                        getString(R.string.add_somethigs_to_cart),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    sendMessage()
+                    requestOrder()
+                }
+            }
+            it.btnMynorMateo.setOnClickListener {
+                number = "50256946716"
+
+                if (totalPrice == 0.0) {
+                    Toast.makeText(
+                        (activity as AppCompatActivity?)!!,
+                        getString(R.string.add_somethigs_to_cart),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    sendMessage()
+                    requestOrder()
+                }
+            }
+            it.btnAlexDias.setOnClickListener {
+                number = "50256900212"
+
+                if (totalPrice == 0.0) {
+                    Toast.makeText(
+                        (activity as AppCompatActivity?)!!,
+                        getString(R.string.add_somethigs_to_cart),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    sendMessage()
+                    requestOrder()
+                }
+            }
+            it.btnClear.setOnClickListener {
+                requestOrder()
+                Toast.makeText(
+                    (activity as AppCompatActivity?)!!, getString(R.string.cart_now_clean),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
     private fun sendMessage() {
         val user = FirebaseAuth.getInstance().currentUser?.displayName.toString()
 
         var pedido = ""
-        pedido = "\n"
+
         pedido = pedido + "CLIENTE: $user"
         pedido = pedido + "\n"
         pedido = pedido + "_______________________________"
@@ -129,19 +209,24 @@ class CartFragment :
             Toast.LENGTH_SHORT
         ).show()
 
-//        for (i in){
-//            pedido += pedido +
-//                    "\n" +
-//                    "Producto: $rec[i].name" +
-//                    "\n" +
-//                    "Cantidad: $rec[i].nuevaCantidad" +
-//                    "\n" +
-//                    "_______________________________"
-//        }
+        var index = 0
+        while (index < listOnCart.size) {
+            pedido = "$pedido" +
+                    "\n" +
+                    "\n" +
+                    "Producto: ${listOnCart[index].name}" +
+                    "\n" +
+                    "Precios: ${listOnCart[index].precio} / " + "${listOnCart[index].precioMayor}" +
+                    "\n" +
+                    "Cantidad: ${listOnCart[index].nuevaCantidad}" +
+                    "\n" +
+                    "_______________________________"
+            index++
+        }
 
         pedido = pedido + "Total: Q.$totalPrice" +
-        "\n"
-        pedido += "Total Mayorista: Q.$totalPriceMayor"
+                "\n" +
+                "Total Mayorista: Q.$totalPriceMayor"
 
         val url = "https://wa.me/$number?text=$pedido"
         val intent = Intent(Intent.ACTION_VIEW)

@@ -61,36 +61,37 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/common_padding_min"
+                android:layout_marginBottom="@dimen/common_padding_min"
                 android:text="Luis Vivas"
                 android:textColor="@color/blanco"
                 android:background="@drawable/botones_redondos"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/btnFranciscoRamirez"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/btnAroldoGomez"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintEnd_toStartOf="@id/btnAroldoGomez" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnAroldoGomez"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/common_padding_min"
+                android:layout_marginBottom="@dimen/common_padding_min"
                 android:text="Aroldo Gómez"
                 android:textColor="@color/blanco"
                 android:background="@drawable/botones_redondos"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/btnYonnyMirando"
                 app:layout_constraintStart_toEndOf="@+id/btnLuisVivas"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnYonnyMirando"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/common_padding_min"
+                android:layout_marginBottom="@dimen/common_padding_min"
                 android:text="Yonny Mirando"
                 android:textColor="@color/blanco"
                 android:background="@drawable/botones_redondos"
-                app:layout_constraintTop_toBottomOf="@+id/btnAroldoGomez"
+                app:layout_constraintBottom_toTopOf="@id/btnMynorMateo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btnFranciscoRamirez"/>
 
@@ -99,10 +100,11 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/common_padding_min"
+                android:layout_marginBottom="@dimen/common_padding_min"
                 android:text="Francisco Ramírez"
                 android:textColor="@color/blanco"
                 android:background="@drawable/botones_redondos"
-                app:layout_constraintTop_toBottomOf="@+id/btnAroldoGomez"
+                app:layout_constraintBottom_toTopOf="@id/btnMynorMateo"
                 app:layout_constraintStart_toEndOf="@+id/btnYonnyMirando"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -111,10 +113,11 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/common_padding_min"
+                android:layout_marginBottom="@dimen/common_padding_min"
                 android:text="Mynor Mateo"
                 android:textColor="@color/blanco"
                 android:background="@drawable/botones_redondos"
-                app:layout_constraintTop_toBottomOf="@+id/btnFranciscoRamirez"
+                app:layout_constraintBottom_toTopOf="@id/btnClear"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btnAlexDias"/>
 
@@ -123,21 +126,37 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/common_padding_min"
+                android:layout_marginBottom="@dimen/common_padding_min"
                 android:text="Alex Díaz"
                 android:textColor="@color/blanco"
                 android:background="@drawable/botones_redondos"
-                app:layout_constraintTop_toBottomOf="@+id/btnFranciscoRamirez"
+                app:layout_constraintBottom_toTopOf="@id/btnClear"
                 app:layout_constraintStart_toEndOf="@+id/btnMynorMateo"
                 app:layout_constraintEnd_toEndOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnClear"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_padding_min"
+                android:layout_marginBottom="@dimen/common_padding_min"
+                android:text="Limpiar"
+                android:textColor="@color/blanco"
+                android:background="@drawable/circular_border_rojo"
+                app:layout_constraintStart_toEndOf="@+id/btnMynorMateo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvTotal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textAppearance="?attr/textAppearanceHeadline5"
                 android:textAlignment="textEnd"
                 android:layout_marginHorizontal="@dimen/common_padding_default"
                 android:layout_marginBottom="@dimen/common_padding_default"
+                android:textColor="@color/azulFondo"
+                android:textSize="20dp"
+                android:textStyle="italic|bold"
                 tools:text="Total: Q.25.00"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/tvTotalMayorista"
@@ -147,10 +166,12 @@
                 android:id="@+id/tvTotalMayorista"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textAppearance="?attr/textAppearanceHeadline5"
                 android:textAlignment="textEnd"
                 android:layout_marginHorizontal="@dimen/common_padding_default"
                 android:layout_marginBottom="@dimen/common_padding_default"
+                android:textColor="@color/azulFondo"
+                android:textSize="20dp"
+                android:textStyle="italic|bold"
                 tools:text="Mayorista: Q.19.00"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/btnLuisVivas"/>
