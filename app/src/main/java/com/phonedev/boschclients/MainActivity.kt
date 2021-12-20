@@ -65,13 +65,13 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux,
                     Toast.makeText(this, "Hasta Pronto", Toast.LENGTH_SHORT).show()
                     finish()
                 } else {
-                    response.error?.let {
-                        if (it.errorCode == ErrorCodes.NO_NETWORK) {
+                    response.error?.let { uiException ->
+                        if (uiException.errorCode == ErrorCodes.NO_NETWORK) {
                             Toast.makeText(this, "Sin Coneccion", Toast.LENGTH_SHORT).show()
                         } else {
                             Toast.makeText(
                                 this,
-                                "Codigo de error: ${it.errorCode}",
+                                "Codigo de error: ${uiException.errorCode}",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux,
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        getSupportActionBar()?.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
+        supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar?.setCustomView(R.layout.tool_bar_custom)
 
         binding.searchView.setOnQueryTextListener(this)
@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity(), onProductListenner, MainAux,
     }
 
     private fun configStackImages() {
-        var imageList = ArrayList<SlideModel>()
+        val imageList = ArrayList<SlideModel>()
 
         imageList.add(
             SlideModel(
